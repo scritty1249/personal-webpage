@@ -1,5 +1,4 @@
 runtime: java17
-api_version: 1
 handlers:
 - url: /
   static_files: www/index.html
