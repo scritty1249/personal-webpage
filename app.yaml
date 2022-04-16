@@ -1,6 +1,5 @@
 runtime: java17
 api_version: 1
-threadsafe: true
 handlers:
 - url: /
   static_files: www/index.html
