@@ -1,2 +1,2 @@
 # personal-webpage
-connected to google cloud run for hosting
+connected to google cloud platform for hosting
