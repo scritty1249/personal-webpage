@@ -1,4 +1,4 @@
-runtime: java
+runtime: java17
 api_version: 1
 threadsafe: true
 handlers:
