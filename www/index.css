@@ -40,6 +40,17 @@ body {
     to {transform: scale(1.5,1.5)}
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.growletter {
+    transition: all .5s ease-in-out; 
+}
+
 .growletter:hover {
-    animation: growtext 1s forwards;
+    /* animation: growtext 1s forwards ease-in-out; */
+    transform: scale(1.3);
 }
