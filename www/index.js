@@ -1,8 +1,8 @@
 // Copied from stackoverflow
 var siteWidth = 1280;
-var siteScale = getWidth() /siteWidth;
+var siteScale = screen.width /siteWidth;
 
-document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+siteScale+'');
+document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+siteScale+'')
 
 document.onreadystatechange = function () {
     var state = document.readyState
