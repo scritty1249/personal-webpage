@@ -8,21 +8,52 @@ document.onreadystatechange = function () {
             document.getElementById('interactive');
             document.getElementById('loading').style.visibility = "hidden";
             document.getElementById('page').style.visibility = "visible";
-            //init() // Broken
         }, 1000);
     }
 }
-// End of segment
-function init() {
-    let elements = document.body.getElementsByClassName("growtext")
 
-    for(let i=0; i<elements.length; i++) { // iterate through each target element
-        let element = toString(elements[i].innerHTML)
-        let characters = ""
-        for(let k=0; k<element.length; k++) {
-            characters = characters + "<span class='growletter'>" + element[k] + "</span>"
-        }
-
-        elements[i].innerHTML = characters
-    }
+function getWidth() {
+    return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+    );
 }
+
+function getHeight() {
+    return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.documentElement.clientHeight
+    );
+}
+// End of segment
+
+var footer = document.getElementsByTagName("footer")[0]
+
+document.addEventListener('DOMContentLoaded', function() { // RUN ON PAGE START
+
+// setting navbar size
+    let navs = document.getElementsByTagName("nav")
+    for(let nav=0; nav<navs.length; nav++) {
+        let childs = navs[nav].childElementCount
+
+        for(let navChild=0; navChild<childs; navChild++) {
+            navs[nav].children[navChild].style.width = (100 / childs) + "%"
+        }
+    }
+    window.footer.style.visibility = "hidden"
+}, false);
+
+document.addEventListener('scroll', function() {
+    if (document.body.scrollTop == 0 || document.documentElement.scrollTop == 0) 
+    {
+        window.footer.style.visibility = "hidden"
+    } else {
+        window.footer.style.visibility = "visible"
+    }
+}, false);
