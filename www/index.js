@@ -147,6 +147,12 @@ document.addEventListener('scroll', function() {
     }
 }, false)
 
+document.getElementById('keys').addEventListener('DOMContentLoaded', function() {
+    for(let key=0; key<keyPhrases.length; key++) {
+        document.getElementById('keys').innerHTML = document.getElementById('keys').innerHTML + keyPhrases[key] + "&#13;"
+    }
+}, false)
+
 function getTxtFile(url) { // Returns an array of each line
     let rawFile = new XMLHttpRequest()
     let textLines = []
