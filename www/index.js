@@ -116,18 +116,9 @@ var sha256 = function sha256(ascii) { // Source: https://geraintluff.github.io/s
 // End of segment
 
 var footer = document.getElementsByTagName("footer")[0]
-var keyPhrases = [ // Hash using this algorithm: https://geraintluff.github.io/sha256/
-    "2be4e33aa3e21f6ff7ad144f8fd58228a1cce3b50340b4805ff0c63480eec488", // Sunday
-    "5dc8037aa11096acfa23f0f76d5009acf149be3e5db49280f6aefb8951be5812", // Monday
-    "8e0a1b0ada42172886fd1297e25abf99f14396a9400acbd5f20da20289cff02f", // Tuesday
-    "068be8be83f9bfafd1545d357fd3cd132f8c659effd11e635a698811b796c880", // Wednesday
-    "a3392f089b713a25d3c19978eb705da2765ad08c881e77a208263fd3b39d60b8", // Thursday
-    "8fdae804a91e5ebd4755f29c50e547ebc3ad93ff08fd48dc2bf145be4f8946a8", // Friday
-    "2249476332138d1ed3ea3dc61ccc61e6a1640872b423b0f708f919433b988aba", // Saturday
-]
+var keyPhrases = getTxTFile('https://raw.githubusercontent.com/scritty1249/personal-webpage/main/www/keys.txt').slice(0, 7) // 7 days a week, don't read more lines than this
 
 document.addEventListener('DOMContentLoaded', function() { // RUN ON PAGE START
-
 // setting navbar size
     let navs = document.getElementsByTagName("nav")
     for(let nav=0; nav<navs.length; nav++) {
@@ -155,6 +146,25 @@ document.addEventListener('scroll', function() {
         window.footer.style.visibility = "visible"
     }
 }, false)
+
+function getTxtFile(url) { // Returns an array of each line
+    let rawFile = new XMLHttpRequest()
+    let textLines = []
+    rawFile.open("GET", url, false)
+    rawFile.onreadystatechange = function() }
+        if(rawFile.readyState === 4) {
+            if(rawFile.status === 200 || rawFile.status === 0) {
+                let textResponse = rawFile.responseText
+                console.log("got keyphrases: " + textResponse)
+                textLines = textResponse.split('\n')
+                
+            } else {
+                console.log("GET request did not return 200 or 0.")
+            }
+        }
+        rawFile.send(null)
+        return textLines
+}
 
 function updateLogin() {
     let userIn = document.getElementById("login").value.toLowerCase()
