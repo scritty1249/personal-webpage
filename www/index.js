@@ -39,6 +39,15 @@ function getHeight() {
 // End of segment
 
 var footer = document.getElementsByTagName("footer")[0]
+var keyPhrases = [
+    "johnson", // Sunday
+    "jericho", // Monday
+    "purple", // Tuesday
+    "tungsten", // Wednesday
+    "hot pocket", // Thursday
+    "lithium ion", // Friday
+    "wig", // Saturday
+]
 
 document.addEventListener('DOMContentLoaded', function() { // RUN ON PAGE START
 
@@ -49,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() { // RUN ON PAGE START
 
         for(let navChild=0; navChild<childs; navChild++) {
             navs[nav].children[navChild].style.width = (100 / childs) + "%"
-            if(navs[nav].children[navChild].className == "active") {
+            if(navs[nav].children[navChild].className.includes('active')) {
                 navs[nav].children[navChild].href = "javascript:void(0)" // disables the button for active page
             }
         }
@@ -68,4 +77,16 @@ document.addEventListener('scroll', function() {
     } else {
         window.footer.style.visibility = "visible"
     }
-}, false);
+}, false)
+
+function updateLogin() {
+    let userIn = document.getElementById("login").value.toLowerCase()
+    let day = new Date().getDay()
+    if( userIn == keyPhrases[day] ) {
+        document.getElementById("login").style.boxShadow = ""
+        document.getElementById("login").style.border = "3px solid #00be9b"
+        window.location.replace('./portal.html')
+    } else {
+        document.getElementById("login").style.boxShadow = "2px 4px 3.4px #333333" /* offset-x | offset-y | blur-radius | color */
+    }
+}

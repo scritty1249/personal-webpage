@@ -19,7 +19,7 @@
 
 @font-face {
     font-family: 'LatoRegular';
-    src: url('fonts/lato/Lato-Regular.ttf') format('truetype');
+    src: url('./fonts/lato/Lato-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 
@@ -40,6 +40,20 @@ footer {
     bottom: 0%;
     left: 1%;
     width: fit-content;
+}
+
+textarea {
+    background-color: #555454;
+    font-family: 'LatoRegular';
+    text-align: center;
+    border: none;
+    resize: none;
+    color: white;
+    font-size: 2em;
+    outline: none;
+    padding: 0.5em;
+    margin: 5%;
+    width: 25%;
 }
 
 #textboxlined {
@@ -132,7 +146,7 @@ nav > * {
     justify-content: center;
 }
 
-nav :hover {
+nav :hover:not(img) {
     background-color: #ddd;
     color: black;
 }

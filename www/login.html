@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="./index.css"/>
+		<link rel="icon" href="./favicon.ico"/>
+		<script src="./index.js"></script>
+		<title>Portal (unfinished)</title>
+        
+	</head>	
+	<body>
+		<div id="loading"></div>
+		<div id="page">
+			<nav>
+				<a href="./index.html">
+					<img src="./index_media/images/home.png" width="20px" height="auto"/>
+					&nbsp;Home
+				</a>
+				<a href="https://github.com/scritty1249">
+					<img src="./index_media/images/github-512x512.png" width="18px" height="auto"/>
+					&nbsp;&nbsp;Github
+				</a>
+				<a href="./login.html" class="active">
+                    <img src="./index_media/images/portal.png" width="24px"/>
+                    &nbsp;Portal
+                </a>
+				<a href="./about.html" class="dead-link">About</a>
+			</nav>
+            <br/><br/><br/><br/><br/>
+			<div class="center" style="width: 97%; height: 90%; display: contents;">
+
+                <div class="textboxfloat center growletter" style="margin-top:10%;">
+                    <h1 style="font-size: 3em;">What's the password?</h2>
+                </div>
+
+                <form class="center" style="margin-top:1%;" id="personal">
+                    <textarea rows="1" id="login" oninput="updateLogin()"></textarea>
+                </form>
+
+                <div id="textboxlined" class="growletter" style="margin-top:15%;">
+					<p><strong style="font-size: x-large;">Sorry, Personal Access Only!</strong></p>
+					<p>If I haven't allowed it, you shouldn't go past here.</p>
+					<p>If you are allowed, you should've gotten a keyphrase from me...</p>
+				</div>
+
+			</div>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			<footer>
+				<h5>
+					This website<br/>
+					is still<br/>
+					in development!<br/>
+				</h5>
+			</footer>
+
+		</div>
+	</body>
+</html>
