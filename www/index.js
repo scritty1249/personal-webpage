@@ -49,10 +49,17 @@ document.addEventListener('DOMContentLoaded', function() { // RUN ON PAGE START
 
         for(let navChild=0; navChild<childs; navChild++) {
             navs[nav].children[navChild].style.width = (100 / childs) + "%"
+            if(navs[nav].children[navChild].className == "active") {
+                navs[nav].children[navChild].href = "javascript:void(0)" // disables the button for active page
+            }
         }
     }
-    window.footer.style.visibility = "hidden"
-}, false);
+// styling dead links
+    let deadLinks = document.getElementsByClassName('dead-link')
+    for(let link=0; link<deadLinks.length; link++) {
+        deadLinks[link].innerHTML = "<img src='./index_media/images/disconnect.png' width='20px'/>  -" + deadLinks[link].innerHTML +"-"
+    }
+}, false)
 
 document.addEventListener('scroll', function() {
     if (document.body.scrollTop == 0 || document.documentElement.scrollTop == 0) 
