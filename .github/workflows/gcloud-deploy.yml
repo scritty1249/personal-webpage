@@ -23,6 +23,7 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
         with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
           service_account: 'personal-webpage-347321@appspot.gserviceaccount.com'
       # Deploy application on Google App Engine
       - id: deploy
