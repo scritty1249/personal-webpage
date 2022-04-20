@@ -31,6 +31,7 @@ function setActiveTab() {
     let currentName = window.parent.location.pathname.split('/').pop()
     let navLinks = document.getElementsByTagName('nav')[0].children
     if (currentName == 'portal.html') { currentName = 'login.html'} // set portal and login page to the same thing
+    if (currentName == None) { currentName = 'index.html' }
     if (currentName == '404.html') {
         for (let i=0; i<navLinks.length; i++) {
             if (navLinks[i].classList.contains('dead-link')) {
