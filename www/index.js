@@ -120,7 +120,7 @@ notMyShit = {
     }
 }
 
-const keyUrl = 'https://raw.githubusercontent.com/scritty1249/personal-webpage/7b065522ebdb5d3a1fe6f7f1ff17091217427a79/www/keys.txt'
+const keyUrl = 'https://scritty1249.github.io/personal-webpage/www/keys.txt'
 const fuckingWindows = '\r\n'
 const currentDay = new Date().getDay()
 const angerTolerance = 20
