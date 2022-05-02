@@ -174,7 +174,7 @@ window.onload = function() { // Add new elements before styling
     let corsHeader = document.createElement('meta')
     let originPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/") + 1)
     corsHeader.setAttribute('http-equiv', 'Access-Control-Allow-Origin')
-    corsHeader.setAttribute('content', originPath + "nav.html")
+    corsHeader.setAttribute('content', originPath + "./nav.html")
     document.getElementsByTagName("head")[0].appendChild(corsHeader)
     console.log("Set header: " + String(corsHeader))
 
@@ -229,9 +229,13 @@ document.addEventListener('DOMContentLoaded', function() { // Style stuff
 // }
 
 function loadKeyPhrases(keyFile) {
-    // Load up the keys
-    let rawFile = String(notMyShit.loadFile(keyFile))
-    return rawFile
+    if (window.location.pathname.split('/').pop() == "login.html") {
+        // Load up the keys
+        let rawFile = String(notMyShit.loadFile(keyFile))
+        return rawFile
+    } else {
+        return "empty"
+    }
 }
 
 function getCurrentFile() {
