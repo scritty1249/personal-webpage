@@ -68,16 +68,20 @@ textarea {
     width: 25%;
 }
 
+a {
+  color: white;
+}
+
 a:link {
   text-decoration: none;
-  color: inherit;
+  color: white;
   font-family: inherit;
   font-size: inherit;
 }
 
 a:visited {
   text-decoration: none;
-  color: inherit;
+  color: white;
 }
 
 #textboxlined {
