@@ -123,7 +123,7 @@ a:visited {
     align-content: center;
 }
 
-.download, .download:link{
+.download {
     display: block;
     background-color: #393939;
     font-family: 'LatoRegular';
@@ -136,7 +136,7 @@ a:visited {
     outline: none;
     padding: 0.5em;
     width: 25%;
-    vertical-align: middle;
+    align-items: center;
 }
 
 .download > img {
