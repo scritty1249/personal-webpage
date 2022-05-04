@@ -191,6 +191,7 @@ window.onload = function() { // Add new elements before styling
 
     // Identify touchscreen/mobile browsers
     console.log("Touch browser: " + (isTouchScreen))
+    document.getElementById('ytplayer').style.pointerEvents = "none"
 
     // Initalize Youtube API if iframes (assumed to be video players) exist on the page
     initYT()
