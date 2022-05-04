@@ -162,7 +162,7 @@ a:visited {
 }
 
 #ytplayer {
-    pointer-events: none;
+    pointer-events: all; /* set to "none" when a complete version of the custom player controls is finished */
     z-index: 1;
     transition: 0.7s;
     width: 100%;
