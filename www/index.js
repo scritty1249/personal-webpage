@@ -120,7 +120,8 @@ notMyShit = {
     }
 }
 
-const keyUrl = 'https://storage.googleapis.com/personal-webpage-media/data/keys.txt'
+const isTouchScreen = ('ontouchstart' in window ) ||( navigator.maxTouchPoints > 0 ) || ( navigator.msMaxTouchPoints > 0 )
+const keyUrl = 'https://personal-webpage-media.storage.googleapis.com/data/keys.txt?alt=media'
 const fuckingWindows = '\r\n'
 const currentDay = new Date().getDay()
 const angerTolerance = 20
@@ -178,7 +179,7 @@ window.onload = function() { // Add new elements before styling
     document.getElementsByTagName("head")[0].appendChild(corsHeader)
     console.log("Set header: " + String(corsHeader))
 
-    // styling dead links
+    // Styling dead links
     let deadLinks = document.getElementsByClassName('dead-link')
     for (let link = 0; link < deadLinks.length; link++) {
         deadLinks[link].innerHTML = "<img src='./index_media/images/disconnect.png' width='20px'/>  &nbsp;" + deadLinks[link].innerHTML + "&nbsp;"
@@ -187,6 +188,12 @@ window.onload = function() { // Add new elements before styling
     // Insert footer data
     let footer = document.getElementsByTagName('footer')[0]
     footer.innerHTML = notMyShit.loadFile('./footer.html')
+
+    // Identify touchscreen/mobile browsers
+    console.log("Touch browser: " + (isTouchScreen))
+
+    // Initalize Youtube API if iframes (assumed to be video players) exist on the page
+    initYT()
 }
 
 document.addEventListener('DOMContentLoaded', function() { // Style stuff
@@ -205,35 +212,14 @@ document.addEventListener('DOMContentLoaded', function() { // Style stuff
 
 }, false)
 
-// document.addEventListener('scroll', function() { // Doesn't work, but doesn't have to either
-//     if (document.body.scrollTop == 0 || document.documentElement.scrollTop == 0) {
-//         document.getElementsByTagName('footer')[0] = "hidden"
-//     } else {
-//         document.getElementsByTagName('footer')[0] = "visible"
-//     }
-// }, false)
-
-// function fuckingCORS(url) { // Runs CORS preflight check (no longer needed)
-//     var xhr = new XMLHttpRequest()
-//     xhr.open("GET", url, true)
-//     xhr.responseType = 'application/json'
-//     xhr.setRequestHeader('credentials', 'include')
-//     xhr.onload = function() {
-//         if (xhr.status == 200) {
-//             console.log('CORS preflight success')
-//         } else {
-//             console.log('CORS preflight failure')
-//             console.log(xhr.response)
-//         }
-//     }
-// }
-
 function loadKeyPhrases(keyFile) {
     if (window.location.pathname.split('/').pop() == "login.html") {
         // Load up the keys
         let rawFile = String(notMyShit.loadFile(keyFile))
+        console.log(rawFile)
         return rawFile
     } else {
+        console.log("Couldn't get keys")
         return "empty"
     }
 }
@@ -270,7 +256,132 @@ function updateLogin() {
     }
 }
 
-function testing() {
+function testing() { // Testing responses
     console.log(this)
     alert(this)
+}
+
+// Working with YouTube API
+// [!]: every time the player is called, it MUST be referred to by document.getElementById
+//      attempting to assign the object to a variable seems to break the code...
+const defaultPlayerId = 'ytplayer'
+const initYT = function() { // Makes youtube iframes work, call before using anything with YT API
+    let tag = document.createElement('script');
+    tag.id = 'iframe-demo';
+    tag.src = 'https://www.youtube.com/iframe_api';
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    console.log("Injected YoutubeAPI script")
+}
+
+var player
+var playerElement
+var playerState = -1
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+        playerVars: {
+            'playsinline': 1,
+            'enablejsapi': 1,
+            'iv_load_policy': 3,
+            'rel': 0,
+            'cc_load_policy': 0,
+            'autoplay': 0,
+            'controls': 1,
+            'modestbranding': 1,
+            'html5': 1,
+            'autoplay': 0
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+            'onError': fuckYoutube
+        },
+
+    });
+}
+
+function onPlayerReady(event) {
+    playerElement = document.getElementById('ytplayer')
+
+    // Adjust overlay dimensions
+    let overlay = document.getElementById('ytoverlay')
+    document.getElementById('ytoverlay').height = overlay.parentElement.height
+
+    // Notify user when video is loaded
+    playerElement.style.boxShadow = "4px 5px 5.3px #2e2d2d" /* offset-x | offset-y | blur-radius | color */
+    console.log("Youtube iframe loaded")
+
+    // Setting overlay
+    if ( !(isTouchScreen) ) {
+        playerElement.style.zIndex = 3
+        overlay.remove()
+        for ( control in document.getElementById('ytcontrols').childNodes ) {
+            control.style.opacity = "1"
+        }
+    }
+}
+
+function fuckYoutube() {
+    alert("poop")
+}
+
+async function pausePlay() {
+    if (playerState == 2 || playerState == -1 || playerState == 3) { // paused
+        player.playVideo()
+        playerElement.style.boxShadow = ""
+        delay(100)
+    } else {
+        player.pauseVideo()
+        playerElement.style.boxShadow = "4px 5px 5.3px #2e2d2d" /* offset-x | offset-y | blur-radius | color */
+        delay(100)
+    }
+}
+
+function restartPlayer() {
+    if (playerState != -1) {
+        player.seekTo(0)
+    }
+}
+
+function jumpPlayer(direction, skipover=10) {
+    if (direction.toLowerCase().includes('back')) { skipover = skipover * -1 }
+    let now = getTimestamp()
+    player.seekTo(now + skipover, true)
+}
+
+function getTimestamp() {
+    return player.getCurrentTime()
+}
+
+
+
+function onPlayerStateChange(event) {
+    /* 
+        [   List of playerstate codes: ]
+    -1: Not started
+     0: Ended
+     1: Playing
+     2: Paused
+     3: Buffering
+     4: Video cued
+    */
+    playerState = event.data
+    console.log(playerState)
+
+    // Display progress bar
+    let progBar = document.getElementById('ytprogress')
+    progBar.style.opacity = "100%"
+    // updateProgBar() // [!] Poor implementation - causes an unacceptable amount of lag
+}
+
+async function updateProgBar() {
+    let progBar = document.getElementById('ytprogress')
+    while (playerState == 1) {
+        progBar.style.width = (getPercentElapsed()) + "%"
+        delay(500)
+    }
+}
+
+function getPercentElapsed() {
+    return player.getCurrentTime() / player.getDuration()
 }

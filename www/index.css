@@ -24,6 +24,36 @@
     font-style: normal;
 }
 
+@keyframes bg-bounce {
+    0%   {background-position-y: center;}
+    25%  {background-position-y: top;}
+    45%  {background-position-y: bottom}
+    70%  {background-position-y: top;}
+    100% {background-position-y: center;}
+}
+
+@keyframes bg-fly {
+    0%   {background-position-y: center;}
+    65%  {background-position-y: top}
+    100% {background-position-y: 200%;}
+}
+
+@keyframes spin-c {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate(175deg);}
+    50%  {transform: rotate(225deg);}
+    75%  {transform: rotate(400deg);}
+    100% {transform: rotate(360deg);}
+}
+
+@keyframes spin-cc {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate(-45deg);}
+    50%  {transform: rotate(-90deg);}
+    75%  {transform: rotate(-135deg);}
+    100% {transform: rotate(-225deg);}
+}
+
 body {
     background-color: #181818;
     font-weight: 200;
@@ -70,9 +100,10 @@ textarea {
 
 a {
   color: white;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 a:link {
@@ -130,6 +161,134 @@ a:visited {
     align-content: center;
 }
 
+#ytplayer {
+    pointer-events: none;
+    z-index: 1;
+    transition: 0.7s;
+    width: 100%;
+    height: 100%;
+    /* width: 700px;
+    height: 394px; */
+}
+
+#ytprogress {
+    height: 15px;
+    width: 0%;
+    display: flex;
+    justify-self: left;
+    background-color: #00be9b;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0%;
+    color: #181818;
+}
+
+#ytcontrols {
+    display: flex;
+    white-space: nowrap;
+    justify-items: stretch;
+    /* background-color: #393939; */
+    font-family: 'LatoRegular';
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    resize: none;
+    font-size: 2em;
+    outline: none;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    overflow: visible;
+    height: 45px;
+    z-index: 1;
+}
+
+#ytcontrols > * {
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 0px;
+    position: relative;
+    display: flex;
+    overflow: visible;
+    height: inherit;
+    margin: 0% auto;
+    text-align: center;
+    padding: 14px 14px 14px 14px;
+    text-decoration: none;
+    font-size: 17px;
+    height: 100%;
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    opacity: 0%;
+    transition: 0.32s;
+    justify-content: center;
+}
+
+#ytcontrols > *:hover {
+    opacity: 100%;
+    box-shadow: 4px 6px 2px #333333; /* offset-x | offset-y | blur-radius | color */
+}
+
+#ytcontrols > *:active {
+    color: black;
+    background-color: #00be9b;
+    width: 26%;
+    height: 103%;
+}
+
+#ytcontrols > *:active > img {
+    animation: spin-c;
+    filter: brightness(-100%);
+}
+
+#ytwindow {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#ytoverlay {
+    background: transparent;
+    z-index: 2;
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    overflow: hidden;
+}
+
+#ytoverlay > * {
+    background: transparent;
+    color: transparent;
+    border: none;
+    height: 100%;
+    width: 50%;
+    height: 90%;
+}
+
+#ytarea {
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 500px;
+    width: 888px;
+    overflow: visible;
+}
+
+.ytcontainer {
+    display: block;
+    width: 60%;
+}
+
+.playercontrol {
+    background-color: white;
+    border: #00be9b;
+    width: 25%;
+    height: 25%;
+}
+
 .download {
     display: block;
     background-color: #393939;
@@ -141,26 +300,25 @@ a:visited {
     color: white;
     font-size: 2em;
     outline: none;
-    padding: 0.5em;
-    width: 25%;
+    padding: 0.7em;
+    width: fit-content;
     align-items: center;
-}
-
-.download > img {
-    filter: brightness(500%) grayscale(100%)
+    background-image: url('./index_media/images/download-w.png');
+    background-position: 93% center; /* This will need to be rewritten based on use case */
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-size: 1.3em;
 }
 
 .download:hover {
     box-shadow: 2px 4px 3.4px #2e2d2d;
+    animation: bg-bounce 0.52s;
 }
 
 .download:active {
     background-color: #00be9b;
     color: black;
-}
-
-.download:active > img {
-    filter: brightness(-500%) grayscale(100%)
+    background-image: url('./index_media/images/download-b.png');
 }
 
 .center {
@@ -175,7 +333,8 @@ a:visited {
 
 .center > * {
     display: block;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .growletter > * {

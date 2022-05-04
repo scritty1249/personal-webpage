@@ -5,30 +5,58 @@
 		<meta name="viewport" content="width=device-width, inital-scale=1, maximum-scale=1, user-scalable=0">
 		<link rel="stylesheet" type="text/css" href="./index.css"/>
 		<meta http-equiv="Access-Control-Allow-Origin" content="./nav.html">
-		<meta http-equiv="Access-Control-Allow-Origin" content="https://storage.cloud.google.com/personal-webpage-media/">
+		<meta http-equiv="Access-Control-Allow-Origin" content="https://storage.cloud.google.com">
+		<meta http-equiv="Access-Control-Allow-Origin" content="https://www.youtube.com">
 		<meta name="referrer" content="no-referrer-when-downgrade">
 		<link rel="icon" href="./favicon.ico"/>
 		<script src="./index.js"></script>
 		<title>Personal</title>
-	</head>	
+	</head>
 	<body>
 		<div id="loading"></div>
 		<div id="page">
 			<object type="text/html" data="./nav.html" width="100%"></object>
             <br/><br/><br/><br/><br/>
-			<div class="center" style="width: 97%; display: contents;">
+			<div class="center" style="width: 97%; display: contents; height: 100%;">
 				<div id="textboxlined" class="growletter">
 					<p><strong style="font-size: x-large;">Senior Ball Edit!</strong></p>
 					<p>This is a <strong><i>rough</i> draft</strong>, but will be very similar to the final cut.</p>
 					<p>Thanks to Angelica and Jacien for arranging a ride for everyone!</p>
 				</div>
-				<video controls width="80%" style="margin-top: 6%">
-					<source src="https://storage.cloud.google.com/personal-webpage-media/senior-ball-edit.mp4" type="video/mp4">
-					Sorry, your browser doesn't support embedded videos...
-				</video>
-				<br/>
+				<br/><br/>
+				<div id="ytarea">
+					<div id="ytwindow">
+						<div id="ytoverlay">
+							<button class="playercontrol" onclick="jumpPlayer('backward')">
+								<img src="./index_media/images/forward-left.png" width="24px" height="24px">
+							</button>
+							<button class="playercontrol" onclick="jumpPlayer('forward')">
+								<img src="./index_media/images/forward-right.png" width="24px" height="24px">
+							</button>
+						</div>
+						<iframe id="ytplayer" src="https://www.youtube.com/embed/gB7OntxhyW8?enablejsapi=1&rel=0&modestbranding=1" 
+						title="YouTube video player" frameborder="0" allow="accelerometer; picture-in-picture; autoplay" allowfullscreen>
+							Seems like the video isn't loading. Try the download link below.</iframe>
+					</div>
+					<div id="ytcontrols">
+						<button class="playercontrol" onclick="pausePlay()">
+							<img src="./index_media/images/play.png" width="28px" height="28px">
+						</button>
+						<button class="playercontrol" onclick="jumpPlayer('backward')">
+							<img src="./index_media/images/forward-left.png" width="30px" height="30px">
+						</button>
+						<button class="playercontrol" onclick="jumpPlayer('forward')">
+							<img src="./index_media/images/forward-right.png" width="30px" height="30px">
+						</button>
+						<button class="playercontrol" onclick="restartPlayer()">
+							<img src="./index_media/images/restart.png" width="28px" height="28px">
+						</button>
+					</div>
+					<span id="ytprogress" type="range"></span>
+				</div>
+				<br/><br/><br/><br/>
 				<a class="download" href="https://storage.cloud.google.com/personal-webpage-media/senior-ball-edit.mp4" download="prom2022-edit-draft">
-					Video won't load? Try clicking me!&nbsp;<img src="./index_media/images/download.png" width="28px" height="28px"/>
+					Save the video in full quality&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</a>
 			</div>
 

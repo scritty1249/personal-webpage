@@ -2,6 +2,9 @@ window.onload = function() { // Add new elements before styling
     // styling dead links
     let deadLinks = document.getElementsByClassName('dead-link')
     for (let link = 0; link < deadLinks.length; link++) {
+        if (deadLinks[link].childElementCount > 0) {
+            deadLinks[link].getElementsByTagName('img')[0].remove()
+        }
         deadLinks[link].innerHTML = "<img src='./index_media/images/disconnect.png' width='22px'/>  &nbsp;" + deadLinks[link].innerHTML + "&nbsp;"
         deadLinks[link].href = "./404.html"
     }
