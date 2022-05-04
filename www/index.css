@@ -240,7 +240,6 @@ a:visited {
 
 #ytcontrols > *:active > img {
     animation: spin-c;
-    filter: brightness(-100%);
 }
 
 #ytwindow {
