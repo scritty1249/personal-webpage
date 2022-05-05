@@ -25,34 +25,29 @@
 				</div>
 				<br/><br/>
 				<div id="ytarea">
+					<input id="ytprogress" type="range" min="0" max="100" value="0" step="0.01" oninput="slideSeek()"></input>
+
 					<div id="ytwindow">
-						<div id="ytoverlay">
-							<button class="playercontrol" onclick="jumpPlayer('backward')">
-								<img src="./index_media/images/forward-left.png" width="24px" height="24px">
-							</button>
-							<button class="playercontrol" onclick="jumpPlayer('forward')">
-								<img src="./index_media/images/forward-right.png" width="24px" height="24px">
-							</button>
-						</div>
 						<iframe id="ytplayer" src="https://www.youtube.com/embed/gB7OntxhyW8?enablejsapi=1&rel=0&modestbranding=1" 
 						title="YouTube video player" frameborder="0" allow="accelerometer; picture-in-picture; autoplay" allowfullscreen>
 							Seems like the video isn't loading. Try the download link below.</iframe>
 					</div>
+					
 					<div id="ytcontrols">
 						<button class="playercontrol" onclick="pausePlay()">
-							<img src="./index_media/images/play.png" width="28px" height="28px">
+							<img src="./index_media/images/play.png" width="28px" height="28px" alt="Pause/Play">
 						</button>
 						<button class="playercontrol" onclick="jumpPlayer('backward')">
-							<img src="./index_media/images/forward-left.png" width="30px" height="30px">
+							<img src="./index_media/images/forward-left.png" width="30px" height="30px" alt="Jump Back">
 						</button>
 						<button class="playercontrol" onclick="jumpPlayer('forward')">
-							<img src="./index_media/images/forward-right.png" width="30px" height="30px">
+							<img src="./index_media/images/forward-right.png" width="30px" height="30px" alt="Jump Ahead">
 						</button>
 						<button class="playercontrol" onclick="restartPlayer()">
-							<img src="./index_media/images/restart.png" width="28px" height="28px">
+							<img src="./index_media/images/restart.png" width="28px" height="28px" alt="Restart">
 						</button>
 					</div>
-					<span id="ytprogress" type="range"></span>
+					
 				</div>
 				<br/><br/><br/><br/>
 				<a class="download" href="https://storage.cloud.google.com/personal-webpage-media/senior-ball-edit.mp4" download="prom2022-edit-draft">

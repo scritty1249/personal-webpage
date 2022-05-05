@@ -15,6 +15,21 @@ notMyShit = {
         }
         return result;
     },
+    getText: function(urlText) { // Source: https://stackoverflow.com/questions/28828029/html-read-txt-file-from-url-location-in-javascript
+        // read text from URL location
+        var request = new XMLHttpRequest();
+        request.open('GET', urlText, true);
+        request.send(null);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                var type = request.getResponseHeader('Content-Type');
+                if (type.indexOf("text") !== 1) {
+                    return request.responseText;
+                }
+            }
+        }
+        request.send(null)
+    },
     setViewport: function() { 
         var siteWidth = 1280;
         var siteScale = screen.width / siteWidth;
@@ -121,7 +136,7 @@ notMyShit = {
 }
 
 const isTouchScreen = ('ontouchstart' in window ) ||( navigator.maxTouchPoints > 0 ) || ( navigator.msMaxTouchPoints > 0 )
-const keyUrl = 'https://personal-webpage-media.storage.googleapis.com/data/keys.txt?alt=media'
+const keyUrl = 'https://storage.cloud.google.com/personal-webpage-media/data/keys.txt'
 const fuckingWindows = '\r\n'
 const currentDay = new Date().getDay()
 const angerTolerance = 20
@@ -147,29 +162,6 @@ document.onreadystatechange = function () {
 notMyShit.setViewport()
 var footer = document.getElementsByTagName("footer")[0]
 
-// const checkText = async() => { // No longer needed
-//     async function loading() {
-//         const data = await fetch(keyUrl)
-//         const sanitizedData = (data.text())
-//         let loadKeys = (await sanitizedData).split('\n\r') // Fuck windows
-//         return loadKeys
-//     }
-//     loading().then(loadKeys => {
-//         console.log("loaded keys")
-//         let userIn = notMyShit.sha256(document.getElementById("login").value.toLowerCase())
-//         let loginBox = document.getElementById("login")
-//         let day = new Date().getDay()
-//         if (notMyShit.sha256(userIn) == loadKeys[day]) {
-//             loginBox.style.boxShadow = ""
-//             loginBox.style.border = "3px solid #00be9b"
-//             window.location.replace('./portal.html')
-//         } else {
-//             loginBox.style.boxShadow = "2px 4px 3.4px #333333" /* offset-x | offset-y | blur-radius | color */
-//             console.log("no match:\n" + userIn.length + "\n" + loadKeys[day] + "\n" + userIn + "\nagainst:\n" + loadKeys)
-//         }
-//     })
-// }
-
 window.onload = function() { // Add new elements before styling
     // Allowing CORS for the navbar html file
     let corsHeader = document.createElement('meta')
@@ -188,10 +180,6 @@ window.onload = function() { // Add new elements before styling
     // Insert footer data
     let footer = document.getElementsByTagName('footer')[0]
     footer.innerHTML = notMyShit.loadFile('./footer.html')
-
-    // Identify touchscreen/mobile browsers
-    console.log("Touch browser: " + (isTouchScreen))
-    document.getElementById('ytplayer').style.pointerEvents = "none"
 
     // Initalize Youtube API if iframes (assumed to be video players) exist on the page
     initYT()
@@ -216,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() { // Style stuff
 function loadKeyPhrases(keyFile) {
     if (window.location.pathname.split('/').pop() == "login.html") {
         // Load up the keys
-        let rawFile = String(notMyShit.loadFile(keyFile))
+        let rawFile = String(notMyShit.getText(keyFile))
         console.log(rawFile)
         return rawFile
     } else {
@@ -273,8 +261,17 @@ const initYT = function() { // Makes youtube iframes work, call before using any
     let firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     console.log("Injected YoutubeAPI script")
+     // Identify touchscreen/mobile browsers
+     console.log("Touch browser: " + (isTouchScreen))
+    if ( !(isTouchScreen) ) {
+        document.getElementById('ytplayer').style.pointerEvents = "none"
+    } else { // remove all the fancy stuff for the mobile browers, since im lazy and want to take a break :)
+        document.getElementById('ytprogress').remove()
+        document.getElementById('ytcontrols').remove()
+    }
 }
 
+var playerTime = 0
 var player
 var playerElement
 var playerState = -1
@@ -304,29 +301,22 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     playerElement = document.getElementById('ytplayer')
 
-    // Adjust overlay dimensions
-    let overlay = document.getElementById('ytoverlay')
-    document.getElementById('ytoverlay').height = overlay.parentElement.height
-
     // Notify user when video is loaded
     playerElement.style.boxShadow = "4px 5px 5.3px #2e2d2d" /* offset-x | offset-y | blur-radius | color */
     console.log("Youtube iframe loaded")
 
-    // Setting overlay
-    if ( !(isTouchScreen) ) {
-        playerElement.style.zIndex = 3
-        overlay.remove()
-        for ( control in document.getElementById('ytcontrols').childNodes ) {
-            control.style.opacity = "1"
-        }
-    }
+    // Tracking time
+    setInterval(updateTime, 100); // delay in milliseconds
+
+    // Setting up seek bar
+
 }
 
 function fuckYoutube() {
     alert("poop")
 }
 
-async function pausePlay() {
+function pausePlay() {
     if (playerState == 2 || playerState == -1 || playerState == 3) { // paused
         player.playVideo()
         playerElement.style.boxShadow = ""
@@ -336,6 +326,7 @@ async function pausePlay() {
         playerElement.style.boxShadow = "4px 5px 5.3px #2e2d2d" /* offset-x | offset-y | blur-radius | color */
         delay(100)
     }
+    updateProgBar()
 }
 
 function restartPlayer() {
@@ -354,8 +345,6 @@ function getTimestamp() {
     return player.getCurrentTime()
 }
 
-
-
 function onPlayerStateChange(event) {
     /* 
         [   List of playerstate codes: ]
@@ -372,17 +361,42 @@ function onPlayerStateChange(event) {
     // Display progress bar
     let progBar = document.getElementById('ytprogress')
     progBar.style.opacity = "100%"
-    // updateProgBar() // [!] Poor implementation - causes an unacceptable amount of lag
+    updateProgBar() // [!] Poor implementation - causes an unacceptable amount of lag
 }
 
-async function updateProgBar() {
-    let progBar = document.getElementById('ytprogress')
-    while (playerState == 1) {
-        progBar.style.width = (getPercentElapsed()) + "%"
-        delay(500)
+function updateProgBar() {
+    let ytbar = document.getElementById('ytprogress')
+    ytbar.value = (player.getCurrentTime() / player.getDuration()) * 100
+    playerTime = toString(Math.floor(player.getCurrentTime()))
+
+    updateSeekBar()
+}
+    
+
+function updateTime() {
+    let oldTime = playerTime;
+    if(player && player.getCurrentTime()) { // If player is playing AND time has value
+        playerTime = player.getCurrentTime()
+    }
+    if(playerTime !== oldTime) {
+        updateProgBar()
     }
 }
 
-function getPercentElapsed() {
-    return player.getCurrentTime() / player.getDuration()
+function slideSeek() {
+    let seekHeader = document.getElementById('ytprogress')
+    let playerCurrent = (player.getCurrentTime() / player.getDuration()) * 100
+    let playerBuffered = player.getVideoLoadedFraction() * 100
+    let skipTo = (seekHeader.value / 100) * player.getDuration()
+
+    player.seekTo(skipTo, true)
+}
+
+function updateSeekBar() {
+    if ( !(isTouchScreen) ) {
+        let ytbar = document.getElementById('ytprogress')
+        let value = (ytbar.value-ytbar.min)/(ytbar.max-ytbar.min)*100
+        // left gradient start | left gradient end | right gradient start | right gradient end
+        ytbar.style.background = 'linear-gradient(to right, #00be9b 0%, #00be9b ' + value + '%, #181818 ' + value + '%, #181818 100%)'
+    }
 }
