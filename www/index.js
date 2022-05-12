@@ -208,7 +208,7 @@ function loadKeyPhrases(keyFile) {
         console.log(rawFile)
         return rawFile
     } else {
-        console.log("Couldn't get keys")
+        console.log("No login page detected- did not get keys")
         return "empty"
     }
 }
