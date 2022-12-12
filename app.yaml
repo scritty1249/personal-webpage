@@ -4,6 +4,10 @@ handlers:
   static_files: www/index.html
   upload: www/index.html
 
+- url: /nav\.html
+  static_files: www/nav.html
+  upload: www/nav.html
+
 - url: /(.*)\.html$
   static_files: www/\1
   upload: www/.*\.html$
