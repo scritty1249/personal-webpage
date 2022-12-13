@@ -4,10 +4,10 @@ handlers:
   static_files: www/index.html
   upload: www/index.html
 
-- url: /(.+)(?!\.html)
-  static_files: www/\1
-  upload: www/\1
+- url: /(.*)(?!\.)
+  static_files: www/\1.html
+  upload: www/(.*)\.html
 
-- url: /(.+)
-  static_files: www/\1\.html
-  upload: www/\1\.html
+- url: /(.*)
+  static_files: www/\1
+  upload: www/(.*)
