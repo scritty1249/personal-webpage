@@ -5,7 +5,7 @@ handlers:
   upload: www/index.html
 
 - url: /(.*)(?!\.)
-  static_files: www/\1.html
+  static_files: www/\1\.html
   upload: www/(.*)\.html
 
 - url: /(.*)
