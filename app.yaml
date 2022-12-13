@@ -10,4 +10,4 @@ handlers:
 
 - url: /(.*)$
   static_files: www/\1\.html
-  upload: www/\1\.html$
+  upload: www/.*\.html$
