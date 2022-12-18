@@ -67,7 +67,18 @@
             
             #loading {
                 background-image: url('./index_media/loading-new.gif');
+                background-repeat: no-repeat;
+                background-position: center;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 100;
+                width: 100vw;
+                height: 100vh;
             }
+
+
 
             .fades-0 {
                 animation-delay: 0s;
@@ -164,7 +175,7 @@
 	<body>
 		<div id="loading"></div>
 		<div id="page">
-            <div class="m-10 container-fluid justify-content-center content vertical-center">
+            <div class="m-15 container-fluid justify-content-center content vertical-center">
                 <div class="p-3 m-0 row justify-content-md-center">
                     <div class="p-0 col-md-3 btn-light rounded-pill rounded-sm d-flex flex-row align-items-center justify-content-between">
                         <img src="./index_media/images/me-prof.jpg" class="rounded-circle float-start" alt="Kyle T. Tran"
@@ -183,15 +194,13 @@
                     <a href="https://enroll.zellepay.com/qr-codes?data=eyJuYW1divjoiS1lMRSIsImFjdGlvbiI6InBheW1lbnQiLCJ0b2tlbiI6IjgxNzQyMDQ1OTcifQ==" class="col-md-2 btn btn-light grow bg-black rounded-pill rounded-sm"><div class="grow-item"><img src="./index_media/images/zelle.png" class="icon grow-item">Zelle</div></a>
                 </div>
             </div>
-            <div class="p-0 m-0 row justify-content-md-center">
+            <div class="p-0 m-0 row fade-r fades-3 justify-content-md-center">
                 <a href="./index.html" class="p-1 col-md-2 btn-light rounded-pill rounded-sm d-flex flex-row align-items-center justify-content-center grow">
                     <img src="./index_media/images/home.png" class="grow-item" alt="Kyle T. Tran"
                         style="height: 15px; display: inline-block; filter: invert(0) grayscale(100%) brightness(-500%);">
                     <div class="text-center">&nbsp;<strong>Homepage</strong></div>
                 </a>
             </div>
-
-
 		</div>
 	</body>
 </html>
