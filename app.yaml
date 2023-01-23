@@ -10,5 +10,5 @@ handlers:
   upload: www/pages/.*\.html$
 
 # tell gcp to serve the static files
-- url: /(~.*)
+- url: /(~.*)$
   static_dir: \1
