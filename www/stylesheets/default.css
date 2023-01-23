@@ -1,0 +1,97 @@
+@import "./fonts.css";
+
+#page {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+}
+
+html {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    background: black;
+    font-family: "LatoRegular";
+    color: whitesmoke;
+    place-items: center center;
+}
+body > * {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Remove the default <a> tag styling */ 
+a {
+    color: inherit;
+    font-style: inherit;
+    text-decoration: inherit;
+}
+a:hover {
+    text-decoration: inherit;
+    font-style: inherit;
+}
+
+/* Does not support more than 10 elements */
+.fade-step-r > * {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: fadeInRight;
+}
+.fade-step-r:nth-child(2) {animation-delay: 1s;}
+.fade-step-r:nth-child(3) {animation-delay: 2s;}
+.fade-step-r:nth-child(4) {animation-delay: 3s;}
+.fade-step-r:nth-child(5) {animation-delay: 4s;}
+.fade-step-r:nth-child(6) {animation-delay: 5s;}
+.fade-step-r:nth-child(7) {animation-delay: 6s;}
+.fade-step-r:nth-child(8) {animation-delay: 7s;}
+.fade-step-r:nth-child(9) {animation-delay: 8s;}
+.fade-step-r:nth-child(10) {animation-delay: 9s;}
+@keyframes fadeInRight {
+    0% {
+    opacity: 0;
+    transform: translateX(250px);
+    }
+    75% {
+        opacity: 0.33;
+    }
+    100% {
+    opacity: 1;
+    transform: translateX(0);
+    }
+} 
+.fade-step-l > * {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: fadeInLeft;
+}
+.fade-step-l:nth-child(2) {animation-delay: 1s;}
+.fade-step-l:nth-child(3) {animation-delay: 2s;}
+.fade-step-l:nth-child(4) {animation-delay: 3s;}
+.fade-step-l:nth-child(5) {animation-delay: 4s;}
+.fade-step-l:nth-child(6) {animation-delay: 5s;}
+.fade-step-l:nth-child(7) {animation-delay: 6s;}
+.fade-step-l:nth-child(8) {animation-delay: 7s;}
+.fade-step-l:nth-child(9) {animation-delay: 8s;}
+.fade-step-l:nth-child(10) {animation-delay: 9s;}
+@keyframes fadeInLeft {
+    0% {
+       opacity: 0;
+       transform: translateX(-250px);
+    }
+    75% {
+        opacity: 0.33;
+    }
+    100% {
+       opacity: 1;
+       transform: translateX(0);
+    }
+}

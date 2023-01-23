@@ -3,7 +3,8 @@ handlers:
 - url: /
   static_files: www/index.html
   upload: www/index.html
-  
-- url: /(.*)
+
+# handler for specifically requested .html files, removes the .html extension
+- url: /(.*\.html)$
   static_files: www/\1
-  upload: www/(.*)
+  upload: www/pages/.*\.html$
