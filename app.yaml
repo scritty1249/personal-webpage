@@ -1,5 +1,11 @@
 runtime: python39
 handlers:
+
+# Temporary redirect while the website finishes development
+- url: /(.*)
+  static_files: www/index.html
+  upload: www/index.html
+
 - url: /
   static_files: www/index.html
   upload: www/index.html
