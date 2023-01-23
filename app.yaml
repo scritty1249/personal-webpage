@@ -18,3 +18,7 @@ handlers:
 - url: /(.*\.html)$
   static_files: www/\1
   upload: www/pages/.*\.html$
+
+- url: /(.*)
+  static_files: www/\1
+  upload: www/.*
