@@ -1,7 +1,7 @@
 /* This will be the main font face used for text */
 @font-face {
     font-family: 'LatoRegular';
-    src: url('../~fonts/lato/Lato-Regular.ttf') format('truetype');
+    src: url('Lato-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
