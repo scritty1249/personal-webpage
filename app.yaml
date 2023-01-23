@@ -2,9 +2,18 @@ runtime: python39
 handlers:
 
 # Temporary redirect while the website finishes development
-- url: /(.*)
+- url: /
   static_files: www/index.html
   upload: www/index.html
+- url: /pay
+  static_files: www/index.html
+  upload: www/index.html
+- url: /pay.html
+  static_files: www/index.html
+  upload: www/index.html
+- url: /(.*)
+  static_files: www/\1
+  upload: www/(.*)
 
 - url: /
   static_files: www/index.html
