@@ -4,11 +4,17 @@ handlers:
   static_files: www/index.html
   upload: www/index.html
 
+# tell gcp to serve the static files
+- url: /stylesheets
+  static_dir: www/stylesheets
+- url: /pages
+  static_dir: www/pages
+- url: /js
+  static_dir: www/js
+- url: /index_media
+  static_dir: www/index_media
+
 # handler for specifically requested .html files, removes the .html extension
 - url: /(.*\.html)$
   static_files: www/\1
   upload: www/pages/.*\.html$
-
-# tell gcp to serve the static files
-- url: /(~.*)$
-  static_dir: \1
