@@ -10,8 +10,8 @@ handlers:
 # serve card page while index is under development
 - url: /
   secure: optional
-  static_files: www/pages/card.html
-  upload: www/pages/card.html
+  static_files: www/pages/index.html
+  upload: www/pages/index.html
 
 # serve the stylesheets
 - url: /(.*\.css)
