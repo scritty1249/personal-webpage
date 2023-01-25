@@ -1,6 +1,11 @@
 runtime: python39
 handlers:
 
+# serve robots.txt file
+- url: /robots.txt
+  static_files: www/robots.txt
+  upload: www/robots.txt
+
 # serve index
 # - url: /
 #   static_files: www/index.html
