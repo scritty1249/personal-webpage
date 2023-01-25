@@ -1,3 +1,4 @@
+# Documentation: https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=python
 runtime: python39
 handlers:
 
@@ -8,29 +9,36 @@ handlers:
 
 # serve card page while index is under development
 - url: /
+  secure: optional
   static_files: www/pages/card.html
   upload: www/pages/card.html
 
 # serve the stylesheets
 - url: /(.*\.css)
+  secure: optional
   static_files: www/\1
   upload: www/(.*\.css)
 # serve the javascript
 - url: /(.*\.js)
+  secure: optional
   static_files: www/\1
   upload: www/(.*\.js)
 # serve the asset files
 - url: /(.*\.ico)
+  secure: optional
   static_files: www/\1
   upload: www/(.*\.ico)
 - url: /(.*\.png|.*\.jpg|.*\.jpeg|.*\.gif|.*\.xml|.*\.svg)
+  secure: optional
   static_files: www/\1
   upload: www/(.*\.png|.*\.jpg|.*\.jpeg|.*\.gif|.*\.xml|.*\.svg)
 # serve font files
 - url: /(.*\.ttf)
+  secure: optional
   static_files: www/\1
   upload: www/(.*\.ttf)
 # serve anything else as an html file
 - url: /(.*)
+  secure: optional
   static_files: www/pages/\1.html
   upload: www/pages/(.*)\.html
