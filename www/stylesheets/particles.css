@@ -87,7 +87,7 @@
     transition: 2s;
 }
 
-.particle-effect:active span::before {
+.particle-effect:hover span::before {
     box-shadow: 0 0 20px #00efff,
     -200px -200px #00efff,
     -200px -200px 20px #00efff,

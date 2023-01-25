@@ -33,8 +33,13 @@ handlers:
   secure: optional
   static_files: www/\1
   upload: www/(.*\.ttf)
-# serve anything else as an html file
+# serve html files
+- url: /pay
+  secure: optional
+  static_files: www/pages/pay.html
+  upload: www/pages/pay.html
+
 - url: /(.*)
   secure: optional
-  static_files: www/pages/\1.html
-  upload: www/pages/(.*)\.html
+  static_files: www/pages/404.html
+  upload: www/pages/404.html
