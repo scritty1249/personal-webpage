@@ -1,11 +1,6 @@
 runtime: python39
 handlers:
 
-# serve robots.txt file
-- url: /robots.txt
-  static_files: www/robots.txt
-  upload: www/robots.txt
-
 # serve index
 # - url: /
 #   static_files: www/index.html
@@ -13,18 +8,15 @@ handlers:
 
 # serve card page while index is under development
 - url: /
-  mime_type: text/html
   static_files: www/pages/card.html
   upload: www/pages/card.html
 
 # serve the stylesheets
 - url: /(.*\.css)
-  mime_type: text/css
   static_files: www/\1
   upload: www/(.*\.css)
 # serve the javascript
 - url: /(.*\.js)
-  mine_type: text/javascript
   static_files: www/\1
   upload: www/(.*\.js)
 # serve the asset files
@@ -40,6 +32,5 @@ handlers:
   upload: www/(.*\.ttf)
 # serve anything else as an html file
 - url: /(.*)
-  mime_type: text/html
   static_files: www/pages/\1.html
   upload: www/pages/(.*)\.html
