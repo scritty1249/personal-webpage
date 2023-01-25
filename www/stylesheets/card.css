@@ -28,6 +28,21 @@
     padding: 0px 10px 10px 10px;
 }
 
+.card-items {
+    margin: auto;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
+    position: relative;
+    bottom: 0px;
+    left: -10px
+}
+
 .card > * {
     position: relative;
 }

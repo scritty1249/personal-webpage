@@ -48,6 +48,21 @@ a:hover {
     transform: scale(1.5);
 }
 
+/* Can't apply two animations at once */
+.spinny {
+    transform: rotate(0deg);
+    transition: 1s;
+}
+
+.spinny:hover {
+    transform: rotate(360deg);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Does not support more than 10 elements */
 .fade-step-r > * {
     animation-duration: 2s;

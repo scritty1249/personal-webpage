@@ -10,17 +10,21 @@
     box-sizing: border-box;
 }
 
+.particle-box > p > img {
+    margin: auto;
+}
+
 .particle-box > p {
     position: absolute;
     top: auto;
     left: auto;
     display: flex;
     flex-wrap: wrap;
-    height: 20%;
+    height: fit-content;
     width: 25%;
     text-align: center;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px 10px 10px;
     font-family: "LatoRegular", consolas;
     animation: rgb 5s linear infinite;
     color: #dfffff;
