@@ -1,6 +1,5 @@
 # Documentation: https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=python
-runtime: python39
-service: default
+runtime: python310
 handlers:
 
 # serve index
