@@ -1,0 +1,113 @@
+/* This contains the loading screen animation used for all pages
+ * taken from: https://www.youtube.com/watch?v=aCV_70A3t5E
+ */
+
+@import "stylesheets/fonts.css";
+
+.particle-box > * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.particle-box > p {
+    position: absolute;
+    top: auto;
+    left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 20%;
+    width: 25%;
+    text-align: center;
+    align-items: center;
+    padding: 5px;
+    font-family: "LatoRegular", consolas;
+    animation: rgb 5s linear infinite;
+    color: #dfffff;
+
+    background: rgba(150, 230, 255, 0.1);
+    border: 1px solid rgba(0, 239, 255, 0.5);
+    border-right: 1px solid rgba(0, 239, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 239, 255, 0.2);
+    border-radius: 10px;
+    z-index: -1;
+}
+
+@keyframes rgb {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.particle-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.particle-effect {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.particle-effect span {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    transform: rotate(calc(36deg * var(--i))); /* "--i" from the DOM used as a value to seperate the <span> elements */
+}
+
+.particle-effect span::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: transparent;
+    border: 4px solid #00efff;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px #00efff,
+    -30px -30px #00efff,
+    -30px -30px 20px #00efff,
+    30px 30px #00efff,
+    30px 30px 20px #00efff,
+    30px -30px #00efff,
+    30px -30px 20px #00efff,
+    -30px 30px #00efff,
+    -30px 30px 20px #00efff;
+    animation: rgbSpinny 5s linear infinite;
+    animation-delay: calc(-0.25s * var(--i)); /* "--i" from the DOM used as a value to seperate the <span> elements */
+    transform-origin: 20px; /* spreads the particles out */
+    transition: 2s;
+}
+
+.particle-effect:active span::before {
+    box-shadow: 0 0 20px #00efff,
+    -200px -200px #00efff,
+    -200px -200px 20px #00efff,
+    200px 200px #00efff,
+    200px 200px 20px #00efff,
+    200px -200px #00efff,
+    200px -200px 20px #00efff,
+    -200px 200px #00efff,
+    -200px 200px 20px #00efff;
+    transform-origin: 250px; /* spreads the particles out */
+}
+
+/* makes the particles change colors & spin */
+@keyframes rgbSpinny {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

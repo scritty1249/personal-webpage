@@ -1,18 +1,14 @@
 # Documentation: https://cloud.google.com/appengine/docs/standard/reference/app-yaml?tab=python
 runtime: python310
+error_handlers:
+- file: 404.html
+
 handlers:
-
 # serve index
-# - url: /
-#   static_files: www/index.html
-#   upload: www/index.html
-
-# serve card page while index is under development
 - url: /
   secure: optional
   static_files: www/pages/index.html
   upload: www/pages/index.html
-
 # serve the stylesheets
 - url: /(.*\.css)
   secure: optional
