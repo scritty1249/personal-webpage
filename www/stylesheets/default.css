@@ -1,4 +1,4 @@
-@import "fonts.css";
+@import "/stylesheets/fonts.css";
 
 #page {
     margin: 0px;
@@ -34,6 +34,18 @@ a {
 a:hover {
     text-decoration: inherit;
     font-style: inherit;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.grow {
+    transition: all 0.2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.5);
 }
 
 /* Does not support more than 10 elements */

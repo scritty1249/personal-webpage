@@ -1,39 +1,40 @@
 runtime: python39
 handlers:
 
-# Temporary redirect while the website finishes development
+# serve index
+# - url: /
+#   static_files: www/index.html
+#   upload: www/index.html
+
+# serve card page while index is under development
 - url: /
-  static_files: www/index.html
-  upload: www/index.html
-- url: /pay
-  static_files: www/index.html
-  upload: www/index.html
-- url: /pay.html
-  static_files: www/index.html
-  upload: www/index.html
+  mime_type: text/html
+  static_files: www/pages/card.html
+  upload: www/pages/card.html
+
+# serve the stylesheets
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: www/\1
+  upload: www/(.*\.css)
+# serve the javascript
+- url: /(.*\.js)
+  mine_type: text/javascript
+  static_files: www/\1
+  upload: www/(.*\.js)
+# serve the asset files
+- url: /(.*\.ico)
+  static_files: www/\1
+  upload: www/(.*\.ico)
+- url: /(.*\.png|.*\.jpg|.*\.jpeg|.*\.gif|.*\.xml|.*\.svg)
+  static_files: www/\1
+  upload: www/(.*\.png|.*\.jpg|.*\.jpeg|.*\.gif|.*\.xml|.*\.svg)
+# serve font files
+- url: /(.*\.ttf)
+  static_files: www/\1
+  upload: www/(.*\.ttf)
+# serve anything else as an html file
 - url: /(.*)
+  mime_type: text/html
   static_files: www/\1
   upload: www/(.*)
-
-- url: /
-  static_files: www/index.html
-  upload: www/index.html
-
-# tell gcp to serve the static files
-- url: /stylesheets
-  static_dir: www/stylesheets
-- url: /pages
-  static_dir: www/pages
-- url: /js
-  static_dir: www/js
-- url: /index_media
-  static_dir: www/index_media
-
-# handler for specifically requested .html files, removes the .html extension
-- url: /(.*\.html)$
-  static_files: www/\1
-  upload: www/pages/.*\.html$
-
-- url: /(.*)
-  static_files: www/\1
-  upload: www/.*
