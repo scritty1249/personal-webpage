@@ -38,6 +38,10 @@ handlers:
   secure: optional
   static_files: www/pages/pay.html
   upload: www/pages/pay.html
+- url: /info
+  secure: optional
+  static_files: www/pages/nfc.html
+  upload: www/pages/nfc.html
 
 - url: /(.*)
   secure: optional
