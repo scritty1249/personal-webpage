@@ -28,6 +28,9 @@ handlers:
   secure: optional
   static_files: www/\1
   upload: www/(.*\.png|.*\.jpg|.*\.jpeg|.*\.gif|.*\.xml|.*\.svg)
+# serve objects (downloads)
+- url: /media/objects
+  static_dir: www/media/objects
 # serve font files
 - url: /(.*\.ttf)
   secure: optional
