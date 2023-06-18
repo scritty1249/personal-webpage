@@ -23,18 +23,27 @@ document.onreadystatechange = function () {
         var targets = document.getElementsByClassName("copy-btn");
         for (var i = 0; i < targets.length; i++) {
             targets[i].addEventListener("click", (e) => {
-                copyText(e.target);
-            })
+                if (e.target.textContent != "Copied!") {
+                    let text = e.target.textContent;
+                    if (copyText(e.target)) {
+                        e.target.textContent = "Copied!";
+                        setTimeout(function () {
+                            e.target.textContent = text;
+                        }, 2000);
+                    }
+                }
+            });
         }
     }
 };
 
-
 function copyText(target) {
     try {
         navigator.clipboard.writeText(target.textContent);
+        return true;
     } catch {
         target.focus();
         target.select();
+        return false;
     }
 }
