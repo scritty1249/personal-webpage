@@ -2,12 +2,12 @@
 document.onreadystatechange = function () {
     var state = document.readyState;
     var pageDOM = document.getElementById("page");
-    var loadedDOM = document.getElementById("loaded");
-    var loadingDOM = document.getElementById("loading");
     if (state == "interactive") {
         pageDOM.style.transform = "translate(0, -100vh)";
         pageDOM.style.visibility = "hidden";
     } else if (state == "complete") {
+        var loadedDOM = document.getElementById("loaded");
+        var loadingDOM = document.getElementById("loading");
         loadedDOM.style.transitionDuration = "1s";
         loadedDOM.style.height = "200vh";
         loadedDOM.style.width = "200vh";
