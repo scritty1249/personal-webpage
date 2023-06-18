@@ -1,23 +1,40 @@
 @import "/stylesheets/fonts.css";
 
+* {
+    font-family: "LatoRegular", consolas !important;
+    color: whitesmoke
+}
+
 #page {
     margin: 0px;
     padding: 0px;
     position: absolute;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+#page:not(.lazy) {
+    background-image: url('/media/images/card-backdrop.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: top;
 }
 
 html {
     height: 100%;
     padding: 0px;
     margin: 0px;
+    background: black;
 }
+
 body {
     margin: 0px;
     padding: 0px;
     height: 100vh;
-    background: black;
-    font-family: "LatoRegular", consolas;
-    color: whitesmoke;
+    background: rgb(163,3,240);
+    background: linear-gradient(310deg, rgba(163,3,240,1) 0%, rgba(0,150,136,1) 63%, rgba(21,235,160,1) 97%);
     place-items: center center;
 }
 body > * {
@@ -34,6 +51,21 @@ a {
 a:hover {
     text-decoration: inherit;
     font-style: inherit;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.inline-icon {
+    height: 1em;
+}
+
+.inline-icon-large {
+    height: 1.75em;
 }
 
 .invert {

@@ -1,0 +1,30 @@
+.card, .content {
+    align-items: start;
+    justify-content: left;
+    text-align: left;
+}
+
+.card > .icon {
+    justify-self: center;
+    align-self: center;
+}
+
+.copy-btn {
+    padding: 0;
+    z-index: 10;
+    border: none;
+    outline: 0;
+    cursor: none;
+    background: transparent;
+    margin: 0;
+    text-align: justify;
+    -moz-text-align-last: justify;
+    text-align-last: justify;
+    resize: none;
+    display: inline-block;
+    line-height: inherit;
+    height: fit-content;
+    min-width: fit-content;
+    overflow: hidden;
+    overflow-wrap: normal;
+}
