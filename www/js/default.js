@@ -8,6 +8,9 @@ document.onreadystatechange = function () {
     } else if (state == "complete") {
         var loadedDOM = document.getElementById("loaded");
         var loadingDOM = document.getElementById("loading");
+        loadingDOM.style.transitionDuration = "1s";
+        loadingDOM.style.opacity = "0";
+        loadingDOM.style.transitionDuration = "none";
         loadedDOM.style.transitionDuration = "1s";
         loadedDOM.style.height = "200vh";
         loadedDOM.style.width = "200vh";

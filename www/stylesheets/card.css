@@ -1,11 +1,13 @@
 .icon {
     width: 155px;
     height: 155px;
+    border: rgba(150, 150, 150, 0.15) solid 6px;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     position: absolute;
     top: -45px;
+    align-self: center;
 }
 
 .card {
@@ -13,13 +15,51 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 65px 15%;
-    margin-bottom: 10px;
+    margin: 65px 4% 10px;
+    height: 75vh;
     text-align: center;
-    background-color: #1c1b29;
+    background: linear-gradient(0deg, #000 50%, #121212);
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.18);
     padding: 0px 10px 10px 10px;
+}
+
+.card:before, .card:after {
+    border-radius: 20px;
+    pointer-events: none;
+    content: '';
+	position: absolute;
+	top: calc(65px - 3px);
+    left: calc(4% - 3px);
+    right: calc(4% - 3px);
+    height: calc(75vh + 16px);
+    background: radial-gradient(circle, #009688 0%, rgba(0,0,0,0) 15%), radial-gradient(circle, #009688 0%, rgba(0,0,0,0) 15%);
+    background-position: bottom right, top left;
+    background-size: 200% 200%, 200% 200%;
+    background-repeat: no-repeat, no-repeat;
+	z-index: -1;
+	animation: spin 4s linear infinite;
+}
+
+.card::after {
+    filter: blur(60px) saturate(2) brightness(15);
+}
+
+@keyframes spin {
+    0% {
+        background-position: bottom right, top left;
+    }
+    15% {
+        background-position: bottom left, top right;
+    }
+    50% {
+        background-position: top left, bottom right;
+    }
+    65% {
+        background-position: top right, bottom left;
+    }
+    100% {
+        background-position: bottom right, top left;
+    }
 }
 
 .card-items {
@@ -64,13 +104,10 @@
 
 .content-row {
     width: 100%;
-    height: 100%;
+    height: min-content;
     display: flex;
     flex-wrap: nowrap;
     justify-items: left;
-}
-
-.content-row {
     margin-top: 3vh;
 }
 

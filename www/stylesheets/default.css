@@ -12,6 +12,7 @@
     width: 100vw;
     height: 100vh;
     text-align: center;
+    background: black;
 }
 
 #page:not(.lazy) {
@@ -33,9 +34,9 @@ body {
     margin: 0px;
     padding: 0px;
     height: 100vh;
-    background: rgb(163,3,240);
-    background: linear-gradient(310deg, rgba(163,3,240,1) 0%, rgba(0,150,136,1) 63%, rgba(21,235,160,1) 97%);
+    background: black;
     place-items: center center;
+    
 }
 body > * {
     margin: 0px;

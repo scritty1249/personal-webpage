@@ -1,12 +1,12 @@
 @import "/stylesheets/fonts.css";
 
-
 #loaded {
     top: -50vw;
     position: fixed;
     width: 5vw;
     height: 5vw;
-    background: white;
+    background: white, black;
+    background-size: 100vh, 90vh;
     animation-fill-mode: forwards;
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -14,6 +14,7 @@
 }
 
 #loading::before {
+    background: linear-gradient(310deg, rgb(88, 6, 126) 0%, rgb(163,3,240) 20%, rgba(0,150,136,1) 70%, rgb(10, 127, 86) 97%);
     content: "";
     position: absolute;
     width: 100vw;
