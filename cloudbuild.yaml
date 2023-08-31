@@ -1,9 +1,7 @@
 steps:
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
-- name: "shell"
   script: |
-    #!/bin/sh
     versions=$(gcloud app versions list \
       --service default \
       --sort-by '~VERSION.ID' \
