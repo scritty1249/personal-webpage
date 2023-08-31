@@ -4,15 +4,15 @@ steps:
 - name: "bash"
   script: |
     #!/usr/bin/env bash
-    versions=$(gcloud app versions list \
-      --service default \
-      --sort-by '~VERSION.ID' \
-      --format 'value(VERSION.ID)' | sed 1,5d)
-    for version in $versions; do
-      gcloud app versions delete "$version" \
+      versions=$(gcloud app versions list \
         --service default \
-        --quiet
-    done
+        --sort-by '~VERSION.ID' \
+        --format 'value(VERSION.ID)' | sed 1,5d)
+      for version in $versions; do
+        gcloud app versions delete "$version" \
+          --service default \
+          --quiet
+      done
 options:
   logging: CLOUD_LOGGING_ONLY
 timeout: "1600s"
