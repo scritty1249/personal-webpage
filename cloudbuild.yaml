@@ -1,7 +1,11 @@
 steps:
 - name: "gcr.io/cloud-builders/gcloud"
+  id: "Deploy"
   args: ["app", "deploy"]
+- name: "gcr.io/cloud-builders/gcloud"
+  id: "Cleanup"
   script: |
+    #!/usr/bin/env bash
     versions=$(gcloud app versions list \
       --service default \
       --sort-by '~VERSION.ID' \
