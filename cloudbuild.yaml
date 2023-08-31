@@ -1,7 +1,7 @@
 steps:
 - name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
-- name: "bash"
+- name: "shell"
   script: |
     #!/bin/sh
     versions=$(gcloud app versions list \
