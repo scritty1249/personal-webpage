@@ -162,3 +162,7 @@
 .content-col.fit {
     max-width: max-content;
 }
+
+.btn-icon {
+    height: 2.5em;
+}

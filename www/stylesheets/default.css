@@ -54,6 +54,11 @@ a:hover {
     font-style: inherit;
 }
 
+.center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 .row {
     display: flex;
     flex-direction: row;
