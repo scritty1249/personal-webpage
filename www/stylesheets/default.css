@@ -34,9 +34,7 @@ body {
     margin: 0px;
     padding: 0px;
     height: 100vh;
-    background: black;
-    place-items: center center;
-    
+    background: black;    
 }
 body > * {
     margin: 0px;
